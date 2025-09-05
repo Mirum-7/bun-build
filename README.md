@@ -25,7 +25,7 @@ export default config;
 Then, run the build command:
 
 ```bash
-bun bun-build
+bunx bun-build
 ```
 
 # Configuration Options
