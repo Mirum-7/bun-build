@@ -1,6 +1,6 @@
 {
   "name": "@mirum7/bun-build",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A simple build tool for Bun",
   "module": "dist/index.js",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
   },
   "types": "types/index.d.ts",
   "files": [
-    "types/index.d.ts",
+    "types",
     "dist/index.js"
   ],
   "keywords": [
