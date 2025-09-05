@@ -1,0 +1,38 @@
+{
+  "name": "@mirum7/bun-build",
+  "version": "1.0.2",
+  "description": "A simple build tool for Bun",
+  "module": "dist/index.js",
+  "main": "dist/index.js",
+  "type": "module",
+  "private": false,
+  "bin": {
+    "bun-build": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "bun src/index.ts && bunx --bun tsc",
+    "prepublishOnly": "bun run build"
+  },
+  "types": "types/index.d.ts",
+  "files": [
+    "types/index.d.ts",
+    "dist/index.js"
+  ],
+  "keywords": [
+    "bun",
+    "build",
+    "bundler",
+    "typescript"
+  ],
+  "author": "mirum7",
+  "license": "ISC",
+  "dependencies": {
+    "bun-build": "link:bun-build"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
