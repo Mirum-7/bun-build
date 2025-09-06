@@ -1,6 +1,6 @@
 {
   "name": "@mirum7/bun-build",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A simple build tool for Bun",
   "module": "dist/index.js",
   "main": "dist/index.js",
