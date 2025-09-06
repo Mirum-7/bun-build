@@ -1,5 +1,5 @@
-import type { BuildConfig } from "bun";
 import { resolve } from "path";
+import type { BuildConfig } from "./config.types";
 
 const BUILD_CONFIG_FILES = ["build.config.ts", "bun.build.config.ts"];
 
@@ -7,7 +7,6 @@ export const parseBuildConfig = async (): Promise<BuildConfig> => {
   for (const filename of BUILD_CONFIG_FILES) {
     const path = resolve(process.cwd(), filename);
 
-    
     const isExist = await Bun.file(path).exists();
 
     if (!isExist) {
