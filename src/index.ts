@@ -1,11 +1,10 @@
 #!/usr/bin/env bun
 import { build } from "bun";
 import { rm } from "fs/promises";
-import { resolve } from "path";
+import { mergeConfigs } from "./config";
 import { getOutputTable } from "./getOutputTable";
-import { parseBuildConfig } from "./parseBuildConfig";
-import { parseEntrypointFromPackageJson } from "./parseEntrypointFromPackageJson";
-export * from "./config.types";
+import { parseBuildConfig } from "./parsers/parseBuildConfig";
+export * from "./config/config.types";
 
 const start = performance.now();
 
@@ -17,17 +16,15 @@ const cleanPreviousBuild = async (dir: string) => {
 };
 
 try {
-  const config = await parseBuildConfig();
+  const fileConfig = await parseBuildConfig();
 
-  let {
-    outdir = resolve(process.cwd(), "dist"),
-    entrypoints = await parseEntrypointFromPackageJson(),
-    ...rest
-  } = config;
+  const config = await mergeConfigs(fileConfig);
+
+  let { outdir } = config;
 
   await cleanPreviousBuild(outdir);
 
-  const result = await build({ outdir, entrypoints, ...rest });
+  const result = await build(config);
 
   console.table(getOutputTable(result));
 } catch (error) {

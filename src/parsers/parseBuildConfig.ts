@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import type { BuildConfig } from "./config.types";
+import type { BuildConfig } from "../config";
 
 const BUILD_CONFIG_FILES = ["build.config.ts", "bun.build.config.ts"];
 
@@ -18,7 +18,7 @@ export const parseBuildConfig = async (): Promise<BuildConfig> => {
     return module.default;
   }
 
-  throw new Error(
-    `Build config file not found.\n - ${BUILD_CONFIG_FILES.join("\n - ")}`
-  );
+  console.log("Build config file not found, using default config");
+
+  return {} as BuildConfig;
 };
