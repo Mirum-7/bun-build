@@ -31,3 +31,8 @@ bunx bun-build
 # Configuration Options
 
 Same as `BuildConfig` from [`bun`](https://bun.com/docs/bundler).
+
+## but
+
+- `entrypoints` - not required, default value - `package.json` `main` field
+- `outdir`- not required, default value -`dist`'
