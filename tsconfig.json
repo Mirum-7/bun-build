@@ -30,6 +30,6 @@
 
     "outDir": "./dist"
   },
-  "include": ["./src/index.ts"],
-  "exclude": ["node_modules", "dist", "types"]
+  "include": ["./src/types.ts"],
+  "exclude": ["node_modules", "dist"]
 }

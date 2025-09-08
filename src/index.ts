@@ -1,16 +1,24 @@
 #!/usr/bin/env bun
 import { build } from "bun";
-import { rm } from "fs/promises";
+import { readdir, rm } from "fs/promises";
+import { relative } from "path";
 import { mergeConfigs } from "./config";
 import { getOutputTable } from "./getOutputTable";
 import { parseBuildConfig } from "./parsers/parseBuildConfig";
-export * from "./config/config.types";
 
 const start = performance.now();
 
 const cleanPreviousBuild = async (dir: string) => {
-  if (await Bun.file(dir).exists()) {
-    console.log(`Cleaning previous build at ${dir}`);
+  let exists = false;
+  try {
+    await readdir(dir);
+    exists = true;
+  } catch {}
+
+  if (exists) {
+    console.log(
+      `Cleaning previous build at "./${relative(process.cwd(), dir)}"`
+    );
     await rm(dir, { recursive: true, force: true });
   }
 };

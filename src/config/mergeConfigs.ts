@@ -19,5 +19,8 @@ export const mergeConfigs = async (config: BuildConfig) => {
     newConfig[key] = defaultValue;
   }
 
-  return newConfig as Promise<BuildConfig & Required<typeof getDefaultConfig>>;
+  return newConfig as BuildConfig & {
+      [key in keyof typeof getDefaultConfig]: NonNullable<BuildConfig[key]>;
+    }
+    
 };
