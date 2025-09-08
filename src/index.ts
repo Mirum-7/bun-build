@@ -4,21 +4,30 @@ import { rm } from "fs/promises";
 import { resolve } from "path";
 import { getOutputTable } from "./getOutputTable";
 import { parseBuildConfig } from "./parseBuildConfig";
+import { parseEntrypointFromPackageJson } from "./parseEntrypointFromPackageJson";
 export * from "./config.types";
 
 const start = performance.now();
 
+const cleanPreviousBuild = async (dir: string) => {
+  if (await Bun.file(dir).exists()) {
+    console.log(`Cleaning previous build at ${dir}`);
+    await rm(dir, { recursive: true, force: true });
+  }
+};
+
 try {
   const config = await parseBuildConfig();
 
-  const { outdir = resolve(process.cwd(), "dist") } = config;
+  let {
+    outdir = resolve(process.cwd(), "dist"),
+    entrypoints = await parseEntrypointFromPackageJson(),
+    ...rest
+  } = config;
 
-  if (await Bun.file(outdir).exists()) {
-    console.log(`Cleaning previous build at ${outdir}`);
-    await rm(outdir, { recursive: true, force: true });
-  }
+  await cleanPreviousBuild(outdir);
 
-  const result = await build(config);
+  const result = await build({ outdir, entrypoints, ...rest });
 
   console.table(getOutputTable(result));
 } catch (error) {

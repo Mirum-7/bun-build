@@ -1,13 +1,11 @@
-import { BuildConfig } from "bun";
 import { join } from "path";
+import { BuildConfig } from "./src/config.types";
 
 const paths = {
-  entrypoint: join(process.cwd(), "src", "index.ts"),
   output: join(process.cwd(), "dist"),
 };
 
 const config: BuildConfig = {
-  entrypoints: [paths.entrypoint],
   target: "bun",
   outdir: paths.output,
   minify: true,
