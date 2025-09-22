@@ -2,7 +2,7 @@
 import { build } from "bun";
 import { readdir, rm } from "fs/promises";
 import { relative } from "path";
-import { mergeConfigs } from "./config";
+import { extendConfigByDefaultProps } from "./config";
 import { getOutputTable } from "./getOutputTable";
 import { parseBuildConfig } from "./parsers/parseBuildConfig";
 
@@ -26,11 +26,11 @@ const cleanPreviousBuild = async (dir: string) => {
 try {
   const fileConfig = await parseBuildConfig();
 
-  const config = await mergeConfigs(fileConfig);
+  const config = await extendConfigByDefaultProps(fileConfig);
 
   let { outdir } = config;
 
-  await cleanPreviousBuild(outdir);
+  await cleanPreviousBuild(outdir!);
 
   const result = await build(config);
 

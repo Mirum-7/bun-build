@@ -35,4 +35,5 @@ Same as `BuildConfig` from [`bun`](https://bun.com/docs/bundler).
 ## but
 
 - `entrypoints` - not required, default value - `package.json` `main` field
-- `outdir`- not required, default value -`dist`'
+- `outdir`- not required, default value -`dist`
+- `external` - not required, default value - all `peerDependencies` from `package.json`

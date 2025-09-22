@@ -1,25 +1,22 @@
 import { resolve } from "path";
+import { parsePackageJson } from "./parsePackageJson";
 
 export const parseEntrypointFromPackageJson = async () => {
-  const packageJson: { main?: string } = await import(
-    resolve(process.cwd(), "package.json")
-  );
+  const { main } = await parsePackageJson();
 
-  console.log("Parse entrypoint from package.json");
-
-  if (!packageJson.main) {
+  if (!main) {
     throw new Error('"main" field in package.json not found');
   }
 
-  const mainPath = resolve(process.cwd(), packageJson.main);
+  const mainPath = resolve(process.cwd(), main);
 
   const isExist = await Bun.file(mainPath).exists();
 
   if (!isExist) {
-    throw new Error(`file "${packageJson.main}"(package.json[main]) not found in project`);
+    throw new Error(`file "${main}"(package.json[main]) not found in project`);
   }
 
-  console.log(`Found entrypoint: ${packageJson.main}`);
+  console.log(`Found entrypoint: ${main}`);
 
   return [mainPath];
 };
