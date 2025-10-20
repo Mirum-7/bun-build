@@ -7,9 +7,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": {
-        "default": "./types/types.d.ts"
-      }
+      "types": "./types/types.d.ts"
     },
     "./package.json": "./package.json"
   },
