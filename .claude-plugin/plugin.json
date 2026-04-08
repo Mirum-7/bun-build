@@ -1,0 +1,5 @@
+{
+  "name": "@mirum7/bun-build",
+  "version": "1.5.0",
+  "description": "CLI build tool wrapping Bun's bundler API"
+}

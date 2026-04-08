@@ -1,1 +1,1 @@
-export * from "./config/config.types";
+export type { BuildConfig } from './config';

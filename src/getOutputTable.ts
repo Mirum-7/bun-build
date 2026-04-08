@@ -1,6 +1,6 @@
-import type { BuildOutput } from "bun";
-import { relative } from "path";
-import { formatFileSize } from "./formatFileSize";
+import type { BuildOutput } from 'bun';
+import { relative } from 'path';
+import { formatFileSize } from './formatFileSize';
 
 export const getOutputTable = (result: BuildOutput) =>
   result.outputs.map((output) => ({

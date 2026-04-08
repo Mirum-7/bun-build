@@ -1,7 +1,7 @@
-import { BuildConfig } from "./src/config/config.types";
+import type { BuildConfig } from './src/config';
 
 const config: BuildConfig = {
-  target: "bun",
+  target: 'bun',
   minify: true,
 };
 
