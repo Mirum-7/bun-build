@@ -3,7 +3,13 @@ import { build } from 'bun';
 import { rm } from 'fs/promises';
 import { resolveConfig } from './config';
 import { getOutputTable } from './getOutputTable';
+import { installSkills } from './installSkills';
 import { parseBuildConfig } from './parsers';
+
+if (process.argv[2] === 'install-skills') {
+  await installSkills();
+  process.exit(0);
+}
 
 const start = performance.now();
 
