@@ -1,6 +1,6 @@
 {
   "name": "@mirum7/bun-build",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "A simple build tool for Bun",
   "module": "dist/index.js",
   "main": "src/index.ts",
@@ -25,7 +25,7 @@
     "biome:check": "biome check --write --reporter=summary"
   },
   "types": "types/types.d.ts",
-  "files": ["types/**/*.d.ts", "dist/index.js", ".claude-plugin/**", "skills/**"],
+  "files": ["types/**/*.d.ts", "dist/index.js", "skills/**"],
   "keywords": ["bun", "build", "bundler", "typescript"],
   "author": "mirum7",
   "license": "ISC",
